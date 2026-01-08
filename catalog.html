@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров - PanjSmoke</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ПЕРВОЕ - catalog.css -->
+    <link rel="stylesheet" href="catalog.css">
+    <!-- ПОТОМ - style.css -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Шапка -->
+        <header class="header fade-in">
+            <div class="container header-container">
+                <a href="index.html" class="logo">
+                    <span class="logo-accent">PANJ</span>SMOKE
+                </a>
+                
+                <nav class="nav">
+                    <button class="nav-toggle" aria-label="Открыть меню">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Главная</a></li>  
+                        <li><a href="index.html#about" class="nav-link">О нас</a></li>
+                        <li><a href="index.html#contacts" class="nav-link">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="catalog-main">
+            <!-- Заголовок каталога -->
+            <section class="catalog-header">
+                <div class="container">
+                    <h1 class="catalog-title fade-in">КАТАЛОГ ТОВАРОВ</h1>
+                    <p class="catalog-subtitle fade-in-delay">Все устройства, жидкости и аксессуары в одном месте</p>
+                </div>
+            </section>
+
+            <!-- Фильтры -->
+            <section class="catalog-filters">
+                <div class="container">
+                    <div class="filters-container">
+                        <div class="filter-group">
+                            <h3 class="filter-title">Категория</h3>
+                            <div class="filter-options">
+                                <button class="filter-btn active" data-filter="all">Все товары</button>
+                                <button class="filter-btn" data-filter="disposable">Одноразовые</button>
+                                <button class="filter-btn" data-filter="pod">Pod-системы</button>
+                                <button class="filter-btn" data-filter="mod">Боксмоды</button>
+                                <button class="filter-btn" data-filter="liquid">Жидкости</button>
+                                <button class="filter-btn" data-filter="accessory">Аксессуары</button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <h3 class="filter-title">Сортировка</h3>
+                            <div class="filter-options">
+                                <button class="filter-btn" data-sort="default">По умолчанию</button>
+                                <button class="filter-btn" data-sort="price-asc">Сначала дешевые</button>
+                                <button class="filter-btn" data-sort="price-desc">Сначала дорогие</button>
+                                <button class="filter-btn" data-sort="name">По названию</button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-search">
+                            <input type="text" class="search-input" placeholder="Поиск товаров...">
+                            <button class="search-button">Найти</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Сетка товаров -->
+            <section class="catalog-products">
+                <div class="container">
+                    <div class="products-count fade-in">
+                        Найдено товаров: <span id="productsCount">0</span>
+                    </div>
+                    
+                    <!-- Контейнер для товаров -->
+                    <div class="catalog-grid" id="productsContainer">
+                        <!-- Товары будут добавляться динамически -->
+                        <!-- Пример товара (шаблон) -->
+                        <!--
+                        <article class="catalog-product-card" data-category="disposable" data-price="1900" data-name="PAFOS 20000">
+                            <div class="catalog-product-image">
+                                <div class="image-placeholder prod-1"></div>
+                                <span class="product-badge">Хит</span>
+                            </div>
+                            <div class="catalog-product-content">
+                                <h3 class="catalog-product-title">PAFOS 20000 тяг</h3>
+                                <p class="catalog-product-desc">Одноразовое устройство с невероятной вкусопередачей</p>
+                                <div class="catalog-product-footer">
+                                    <div class="catalog-product-price">1 900 ₽</div>
+                                    <div class="catalog-product-actions">
+                                        <button class="button catalog-detail-btn">Подробнее</button>
+                                        <button class="button catalog-buy-btn">В корзину</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        -->
+                    </div>
+                    
+                    <!-- Пагинация -->
+                    <div class="pagination">
+                        <button class="pagination-btn prev" disabled>&laquo; Назад</button>
+                        <div class="pagination-numbers">
+                            <button class="pagination-number active">1</button>
+                            <button class="pagination-number">2</button>
+                            <button class="pagination-number">3</button>
+                            <span class="pagination-dots">...</span>
+                            <button class="pagination-number">5</button>
+                        </div>
+                        <button class="pagination-btn next">Вперед &raquo;</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Модальное окно товара (такое же как в index.html) -->
+        <div class="modal" id="productModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-container">
+                <button class="modal-close" aria-label="Закрыть окно">&times;</button>
+                <div class="modal-content">
+                    <div class="modal-image">
+                        <div class="image-placeholder modal-img" id="modalImage"></div>
+                    </div>
+                    <div class="modal-info">
+                        <h2 class="modal-title" id="modalTitle">Название товара</h2>
+                        <div class="modal-price" id="modalPrice">0 ₽</div>
+                        <p class="modal-description" id="modalDescription">Описание товара будет здесь.</p>
+                        <div class="modal-specs">
+                            <h3>Характеристики:</h3>
+                            <ul id="modalSpecs"></ul>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="button modal-buy">Добавить в корзину</button>
+                            <button class="button modal-close-btn">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал -->
+        <footer id="contacts" class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="#" class="logo footer-logo">
+                            <span class="logo-accent">PANJ</span>SMOKE
+                        </a>
+                        <p class="footer-tagline">Лучшие цены. Оригинальный товар</p>
+                    </div>
+                    <div class="footer-contacts">
+                        <h3 class="footer-title">Контакты</h3>
+                        <p>г. Москва, ул. Вейповая, 13</p>
+                        <p>Ежедневно с 11:00 до 23:00</p>
+                        <p>+7 (999) 123-45-67</p>
+                        <p>info@panjsmoke.ru</p>
+                    </div>
+                    <div class="footer-social">
+                        <h3 class="footer-title">Мы в соцсетях</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">Telegram</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 PanjSmoke.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="catalog.js"></script>
+</body>
+</html>
